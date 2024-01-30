@@ -2,11 +2,11 @@
 
 ## Why should I do this?
 
-This lab will guide you through the process of writing SQLAlchemy models and making queries to create, read, and update, and delete data in your database. By the end of this lab, you should be ready to independently write and use model classes for your projects. 
+This lab will guide you through the process of writing SQLAlchemy models and making queries to create, read, and update, and delete data in your database. By the end of this lab, you should be ready to independently write and use model classes for your projects.
 
 ## Setup
 
-Clone this repository to your computer. 
+Clone this repository to your computer.
 
 **Take a look at the code** - it looks a bit different than what you're used to. Namely, the code is now separated out into several files rather than being written in a single `app.py` file. Since we're now writing model code as well as route code, this will help us to maintain some structure and separation. (Also, it's really handy to be able to look at your models code side-by-side with your routes code!)
 
@@ -189,3 +189,23 @@ If you'd like more resources on working with SQLAlchemy models, check out the fo
 - [SQLAlchemy Relationship Patterns](https://docs.sqlalchemy.org/en/13/orm/basic_relationships.html) - A comprehensive guide on how to construct models with One-to-Many, One-to-One, and Many-to-Many relationships.
 - [Declaring Models](https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/) - A shorter, but still useful guide.
 - [Filter Operations](https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_filter_operators.htm)
+
+### Virtual Environments
+
+Create Python3 Virtual Environment:
+
+`python3 -m venv env`
+
+Activate Virtual Environment:
+
+`source env/bin/activate`
+
+Deactivate Virtual Environment:
+
+`deactivate`
+
+Remove Virtual Environment:
+
+`sudo em -rf venv`
+
+<br>
