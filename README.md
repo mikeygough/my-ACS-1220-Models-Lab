@@ -190,6 +190,66 @@ If you'd like more resources on working with SQLAlchemy models, check out the fo
 - [Declaring Models](https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/) - A shorter, but still useful guide.
 - [Filter Operations](https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_filter_operators.htm)
 
+### Mikey's Notes
+
+on the difference between `__str__()`and `__repr__()`
+
+- `__str__()` is used for creating a human-readable string representation, while `__repr__()` is used for creating an unambiguous string representation that is meant for developers.
+
+- If `__str__()` is not defined for an object, Python falls back to calling `__repr__()` as a default.
+
+- In general, `__repr__()` should return a string that can be used to recreate the object, while `__str__()` provides a more user-friendly output.
+
+In our app, when we run something like `Author.query.all()`, Python will automatically call the `__repr__()` method on each of those objects.
+
+Note that db.Column and db.relationship are two different things.
+db.Column refer to actual columns within the SQL database.
+db.relationship are not actual columns in the database, they are shortcuts that tell SQLAlchemy where to perform the join.
+
+#### Helpful queries:
+
+Object.query.all()
+
+Object.query.filter_by(attribute='').one()
+
+**get all books with the audience of YOUNG_ADULT:**
+
+young_adult_books = Book.query.filter_by(audience=Audience.YOUNG_ADULT).all()
+
+**get all fiction books:**
+
+fiction_books = Book.query.join(Book.genres).filter(Genre.name == 'fiction').all()
+
+**get all books published after 1980**
+
+books_published_after_1980 = Book.query.filter(Book.publish_date > '1980-01-01').all()
+
+#### Adding entries to the database
+
+`new_author = Author(name="Margaret Atwood")`
+`from datetime import datetime`
+`new_book = Book(title="The Handmaid's Tale", audience=Audience.ADULT, author=new_author)`
+`db.session.add(new_author, new_book)`
+`db.session.commit()`
+
+#### Updating entries
+
+1. get the object
+2. modify its fields
+3. commit to database
+
+`b1 = Book.query.filter_by(title="The Handmaid's Tale").one()`
+`b1.publish_date = datetime(1985, 6, 1) # add a publish date`
+`g1 = Genre(name="dystopia")`
+`b1.genres.append(g1) # add the "dystopia" genre`
+`db.session.add(b1)`
+`db.session.commit()`
+
+#### Deleting entries
+
+`User.query.filter_by(id=123).delete()`
+`db.session.commit()`
+
 ### Virtual Environments
 
 Create Python3 Virtual Environment:
