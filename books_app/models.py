@@ -49,7 +49,6 @@ class Author(db.Model):
     # .relationship is sugar!
     books = db.relationship("Book", back_populates="author")
 
-    # what's the difference between __str__ and __repr__?
     def __str__(self):
         return f"<Author: {self.name}>"
 
@@ -90,13 +89,14 @@ class User(db.Model):
         return f"<User: {self.username}>"
 
 
-# this is a bridge table which maps a many-to-many relationship
+# this is a bridge table which maps a many-to-many relationship between book and genre
 book_genre_table = db.Table(
     "book_genre",
     db.Column("book_id", db.Integer, db.ForeignKey("book.id")),
     db.Column("genre_id", db.Integer, db.ForeignKey("genre.id")),
 )
 
+# this is a bridge table which maps a many-to-many relationship between book and user
 favorite_book_table = db.Table(
     "book_user",
     db.Column("book_id", db.Integer, db.ForeignKey("book.id")),

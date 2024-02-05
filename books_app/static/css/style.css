@@ -1,0 +1,7 @@
+h2 {
+  border: 1px solid black;
+  width: fit-content;
+  background-color: peachpuff;
+  margin-bottom: 16px;
+  padding: 8px;
+}

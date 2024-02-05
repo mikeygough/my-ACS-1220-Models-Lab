@@ -190,6 +190,8 @@ If you'd like more resources on working with SQLAlchemy models, check out the fo
 - [Declaring Models](https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/) - A shorter, but still useful guide.
 - [Filter Operations](https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_filter_operators.htm)
 
+---
+
 ### Mikey's Notes
 
 on the difference between `__str__()`and `__repr__()`
@@ -231,6 +233,25 @@ books_published_after_1980 = Book.query.filter(Book.publish_date > '1980-01-01')
 `new_book = Book(title="The Handmaid's Tale", audience=Audience.ADULT, author=new_author)`
 `db.session.add(new_author, new_book)`
 `db.session.commit()`
+
+Adding new users, for example...
+
+```
+
+# Create instances of User and Book
+new_user = User(username='new_user')
+book1 = Book.query.filter_by(id=1).first()  # Assuming book with id=1 exists
+book2 = Book.query.filter_by(id=2).first()  # Assuming book with id=2 exists
+
+# Assign favorite books to the user
+new_user.favorite_books.append(book1)
+new_user.favorite_books.append(book2)
+
+# Add the user and books to the session
+db.session.add(new_user)
+db.session.commit()
+
+```
 
 #### Updating entries
 

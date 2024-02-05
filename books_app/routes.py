@@ -16,15 +16,12 @@ main = Blueprint("main", __name__)
 
 @main.route("/")
 def homepage():
-    # TODO: Make a query for all instances of 'User' and send to the template
     users = User.query.all()
     return render_template("home.html", users=users)
 
 
 @main.route("/profile/<username>")
 def profile(username):
-    # TODO: Make a query for the user with the given username, and send to the
-    # template
     user = User.query.filter_by(username=username).one()
     favorite_books = user.favorite_books
     return render_template("profile.html", user=user, favorite_books=favorite_books)
